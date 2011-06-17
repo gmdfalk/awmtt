@@ -1,5 +1,5 @@
 #!/bin/bash
-# awmtt: awesomewm configuration control
+# awmtt: awesomewm testing tool
 
 #{{{ Usage
 usage() {

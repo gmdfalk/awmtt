@@ -1,4 +1,5 @@
-awmtt (awesomewm configuration control) is a bash script that helps you test your Awesome configuration files and change the theme.
+awmtt (awesomewm testing tool) is a bash script that helps you test your Awesome configuration files. 
+It also gives you some control over your current theme. No guarantees for theming: Please back up your rc.lua before using awmtt to change the theme of your original rc.lua.
 It requires Xephyr, an Xorg-Application which can spawn a nested instance of Xorg-server allowing you to open multiple instances of Desktop Environments or Window Mangers like AwesomeWM.
 Here's an example of what it looks like: http://ompldr.org/vOTNteA
 

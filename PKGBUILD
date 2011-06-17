@@ -13,4 +13,4 @@ build() {
   install -m755 ${srcdir}/${pkgname} ${pkgdir}/usr/bin/
 }
 
-md5sums=('08dc87f0177feb38f1b0ee19a3970534')
+md5sums=('a7b83a33353776ba365411d76fef8d15')
