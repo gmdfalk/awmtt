@@ -1,0 +1,30 @@
+awmtt (awesomewm configuration control) is a bash script that helps you test your Awesome configuration files and change the theme.
+It requires Xephyr, an Xorg-Application which can spawn a nested instance of Xorg-server allowing you to open multiple instances of Desktop Environments or Window Mangers like AwesomeWM.
+Here's an example of what it looks like: http://ompldr.org/vOTNteA
+
+awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ] ] [ -C /path/to/rc.lua ] [ -D display ] [ -S windowsize ]
+
+  start			Spawn nested Awesome via Xephyr
+  stop			Stops Xephyr
+	all		Stop all instances of Xephyr 
+  restart		Restart nested Awesome
+  -N|--notest		Don't use a testfile but your actual rc.lua (i.e. $HOME/.config/awesome/rc.lua)
+  -C|--config		Specify configuration file
+  -D|--display		Specify the display to use (e.g. 1)
+  -S|--size		Specify the window size
+  -e|--execute		Execute command in nested Awesome
+  -t|--theme		Control the current theme
+	c|change	Change theme
+	p|print		Print themename
+	l|list		List available themes
+	r|random	Choose random theme
+  -h|--help		Show this help text
+  
+examples:
+awmtt start -D 3 -C /etc/xdg/awesome/rc.lua -S 1280x800
+awmtt -t change zenburn (changes the beautiful.theme to zenburn, if present)
+awmtt start (uses defaults)
+
+The defaults are -D 1 -C $HOME/.config/awesome/rc.lua.test -S 1024x640.
+
+  
