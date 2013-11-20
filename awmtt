@@ -59,8 +59,7 @@ if [[ "$XDG_CONFIG_HOME" ]];then
 else
     RC_FILE="$HOME"/.config/awesome/rc.lua.test
 fi
-#[[ -f "$RC_FILE" ]] || cp /etc/xdg/awesome/rc.lua "$RC_FILE" && echo "No rc.lua.test found. Copying skeleton rc.lua."
-[[ -f "$RC_FILE" ]] || RC_FILE=$HOME/.config/awesome/rc.lua && echo "Caution: No rc.lua.test file found. Using your current rc.lua."
+[[ ! -f "$RC_FILE" ]] && RC_FILE="$HOME"/.config/awesome/rc.lua
 #}}}
 
 #{{{ Hostname Check - this is probably only useful for me. I have the same rc.lua running on two different machines
@@ -77,9 +76,15 @@ start() {
     sleep 1
     DISPLAY=:$D.0 "$AWESOME" -c "$RC_FILE" &
     sleep 1
-    echo "Using display $D ($RC_FILE)"
-    echo "$D: Awesome PID is $(awesome_pid)"
-    echo "$D: Xephyr PID is $(xephyr_pid)"
+    
+    # print some useful info
+    if [[ "$RC_FILE" =~ .test$ ]];then
+	echo "Using a test file ($RC_FILE)"
+    else
+	echo "Caution: NOT using a test file ($RC_FILE)"
+    fi
+
+    echo "Display: $D, Awesome PID: $(awesome_pid), Xephyr PID: $(xephyr_pid)"
 }
 #}}}
 #{{{ Stop function
@@ -152,11 +157,11 @@ theme() {
 
 	if [[ "$file" ]];then
             [[ $(theme_list | grep -c $file) -lt 1 ]] && errorout 'No such theme.'
-	    echo "changing $curtheme to $file"
+	    echo "changing $curtheme to $file in $RC_FILE"
 	    sed -i "/$theme.*\/theme\.lua\"/s/[^/]*\(\/theme\.lua\)/$file\1/" "$RC_FILE"
 	else
 	    [[ $(theme_list | grep -c $2) -lt 1 ]] && errorout 'No such theme.'
-	    echo "changing $curtheme to $2"
+	    echo "changing $curtheme to $2 in $RC_FILE"
 	    sed -i "/$theme.*\/theme\.lua\"/s/[^/]*\(\/theme\.lua\)/$2\1/" "$RC_FILE"
 	fi
     }
@@ -202,7 +207,7 @@ parse_options() {
 	esac
 	shift
     done
-  
+
 }
 #}}}
 #}}}
@@ -216,7 +221,7 @@ main() {
     restart)	restart "${args[@]}"	  ;;
     run)	run "${args[@]}"	  ;;
     theme)	theme "${args[@]}"	  ;;
-    *)		echo "Option not recognized" ;;
+    *)		echo "Option missing or not recognized" ;;
   esac
   
 }
