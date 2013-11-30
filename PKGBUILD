@@ -1,6 +1,6 @@
 pkgname=awmtt
-pkgver=0.1
-pkgrel=2
+pkgver=0.2
+pkgrel=1
 pkgdesc="tests your awesomewm configuration with xephyr"
 arch=('any')
 url="https://github.com/mikar/awmtt"
@@ -13,4 +13,4 @@ build() {
   install -m755 ${srcdir}/${pkgname} ${pkgdir}/usr/bin/
 }
 
-md5sums=('aa8b8764bb5ac8b3729f39c1340889e2')
+md5sums=('ee15cec4a31caa3c69808d62ea2f4a82')
