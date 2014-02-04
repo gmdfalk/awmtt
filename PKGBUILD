@@ -13,4 +13,4 @@ build() {
   install -m755 ${srcdir}/${pkgname} ${pkgdir}/usr/bin/
 }
 
-md5sums=('ee15cec4a31caa3c69808d62ea2f4a82')
+md5sums=('SKIP')
