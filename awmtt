@@ -5,7 +5,8 @@
 #{{{ Usage
 usage() {
   cat <<EOF
-awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]] [ -C /path/to/rc.lua ] [ -D display ] [ -S windowsize ]
+awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]]
+[ -C /path/to/rc.lua ] [ -D display ] [ -S windowsize ] [-o 'additional args to pass to awesome' ]
 
   start			Spawn nested Awesome via Xephyr
   stop			Stops Xephyr
@@ -17,6 +18,7 @@ awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]] 
   -S|--size		Specify the window size
   -e|--execute		Execute command in nested Awesome
   -t|--theme		Control the current theme
+  -o|--options		Pass extra options to awesome command (i.e. -o '--no-argb')
 	c|change	Change theme
 	g|get		Get current themename
 	l|list		List available themes
@@ -53,6 +55,7 @@ XEPHYR=$(which Xephyr)
 # Display and window size
 D=1
 SIZE="1024x640"
+OPTIONS=""
 # Path to rc.lua
 if [[ "$XDG_CONFIG_HOME" ]];then
     RC_FILE="$XDG_CONFIG_HOME"/awesome/rc.lua.test
@@ -74,7 +77,7 @@ start() {
 
     "$XEPHYR" -name xephyr_$D -ac -br -noreset -screen "$SIZE" :$D >/dev/null 2>&1 &
     sleep 1
-    DISPLAY=:$D.0 "$AWESOME" -c "$RC_FILE" &
+    DISPLAY=:$D.0 "$AWESOME" -c "$RC_FILE" "$OPTIONS" &
     sleep 1
     
     # print some useful info
@@ -203,6 +206,7 @@ parse_options() {
 	    restart|reload)	input=restart	;;
 	    -e|--execute)	input=run	;;
 	    -t|--theme)		input=theme	;;
+	    -o|--options)	shift; OPTIONS="$1" ;;
 	    *)			args+=( "$1" )	;;
 	esac
 	shift
