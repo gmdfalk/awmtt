@@ -3,7 +3,8 @@ It also gives you some control over your current theme. No guarantees for themin
 AwesomeWM Testing Tool requires Xephyr, an Xorg-Application which can spawn a nested instance of Xorg-server allowing you to open multiple instances of Desktop Environments or Window Mangers like AwesomeWM.
 Here's an example of what it looks like: https://github.com/mikar/awmtt/blob/master/example.jpg
 
-awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]] [ -C /path/to/rc.lua ] [ -D display ] [ -S windowsize ]
+awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]]
+[ -C /path/to/rc.lua ] [ -D display ] [ -S windowsize ] [-o 'additional args to pass to awesome' ]
 
   start			Spawn nested Awesome via Xephyr
   stop			Stops Xephyr
@@ -15,6 +16,7 @@ awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]] 
   -S|--size		Specify the window size
   -e|--execute		Execute command in nested Awesome
   -t|--theme		Control the current theme
+  -o|--options         Pass extra options to awesome command (i.e. -o '--no-argb')
 	c|change	Change theme
 	g|get		Get current themename
 	l|list		List available themes
