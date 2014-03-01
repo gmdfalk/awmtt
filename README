@@ -1,4 +1,4 @@
-awmtt (awesomewm testing tool) is a bash script that helps you test your Awesome configuration files. 
+awmtt (awesomewm testing tool) is a bash script that helps you test your Awesome configuration files.
 It also gives you some control over your current theme. No guarantees for theming: Please back up your rc.lua before using awmtt to change the theme of your original rc.lua.
 AwesomeWM Testing Tool requires Xephyr, an Xorg-Application which can spawn a nested instance of Xorg-server allowing you to open multiple instances of Desktop Environments or Window Mangers like AwesomeWM.
 Here's an example of what it looks like: https://github.com/mikar/awmtt/blob/master/example.jpg
@@ -8,7 +8,7 @@ awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]]
 
   start			Spawn nested Awesome via Xephyr
   stop			Stops Xephyr
-	all		Stop all instances of Xephyr 
+	all		Stop all instances of Xephyr
   restart		Restart nested Awesome
   -N|--notest		Don't use a testfile but your actual rc.lua (i.e. $HOME/.config/awesome/rc.lua)
   -C|--config		Specify configuration file
@@ -22,7 +22,7 @@ awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]]
 	l|list		List available themes
 	r|random	Choose random theme
   -h|--help		Show this help text
-  
+
 examples:
 awmtt start (uses defaults)
 awmtt start -D 3 -C /etc/xdg/awesome/rc.lua -S 1280x800
@@ -30,4 +30,3 @@ awmtt -t change zenburn
 
 The defaults are -D 1 -C $HOME/.config/awesome/rc.lua.test -S 1024x640.
 
-  
