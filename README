@@ -4,7 +4,7 @@ AwesomeWM Testing Tool requires Xephyr, an Xorg-Application which can spawn a ne
 Here's an example of what it looks like: https://github.com/mikar/awmtt/blob/master/example.jpg
 
 awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]]
-[ -C /path/to/rc.lua ] [ -D display ] [ -S windowsize ] [-o 'additional args to pass to awesome' ]
+[ -C /path/to/rc.lua ] [ -A /path/to/awesome ] [ -D display ] [ -S windowsize ] [-o 'additional args to pass to awesome' ]
 
   start			Spawn nested Awesome via Xephyr
   stop			Stops Xephyr
@@ -12,6 +12,7 @@ awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]]
   restart		Restart nested Awesome
   -N|--notest		Don't use a testfile but your actual rc.lua (i.e. $HOME/.config/awesome/rc.lua)
   -C|--config		Specify configuration file
+  -A|--awmbin       Specify Awesome binary (for testing custom awesome builds)
   -D|--display		Specify the display to use (e.g. 1)
   -S|--size		Specify the window size
   -e|--execute		Execute command in nested Awesome
@@ -27,6 +28,7 @@ examples:
 awmtt start (uses defaults)
 awmtt start -D 3 -C /etc/xdg/awesome/rc.lua -S 1280x800
 awmtt -t change zenburn
+awmtt start -A /home/gitforks/awesome/awesome
 
 The defaults are -D 1 -C $HOME/.config/awesome/rc.lua.test -S 1024x640.
 

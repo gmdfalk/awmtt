@@ -6,7 +6,7 @@
 usage() {
   cat <<EOF
 awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]]
-[ -C /path/to/rc.lua ] [ -D display ] [ -S windowsize ] [-o 'additional args to pass to awesome' ]
+[ -C /path/to/rc.lua ] [ -A /path/to/awesome ] [ -D display ] [ -S windowsize ] [-o 'additional args to pass to awesome' ]
 
   start         Spawn nested Awesome via Xephyr
   stop          Stops Xephyr
@@ -14,6 +14,7 @@ awmtt [ start | stop | restart | -h | -e | -t [ get | change | list | random ]]
   restart       Restart nested Awesome
   -N|--notest       Don't use a testfile but your actual rc.lua (i.e. $HOME/.config/awesome/rc.lua)
   -C|--config       Specify configuration file
+  -A|--awmbin       Specify Awesome binary (for testing custom awesome builds)
   -D|--display      Specify the display to use (e.g. 1)
   -S|--size     Specify the window size
   -e|--execute      Execute command in nested Awesome
@@ -197,6 +198,7 @@ parse_options() {
     case "$1" in
         -N|--notest)    RC_FILE="$HOME"/.config/awesome/rc.lua ;;
         -C|--config)    shift; RC_FILE="$1" ;;
+        -A|--awmbin)    shift; AWESOME="$1" ;;
         -D|--display)   shift; D="$1"
                 [[ ! "$D" =~ ^[0-9] ]] && errorout "$D is not a valid display number" ;;
         -S|--size)      shift; SIZE="$1" ;;
