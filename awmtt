@@ -40,7 +40,7 @@ EOF
 #}}}
 
 #{{{ Utilities
-awesome_pid() { pgrep -fn "/usr/bin/awesome"; }
+awesome_pid() { pgrep -n "awesome"; }
 xephyr_pid() { pgrep -f xephyr_$D; }
 errorout() { echo "error: $*" >&2; exit 1; }
 #}}}
