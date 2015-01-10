@@ -204,9 +204,9 @@ parse_options() {
       case "$1" in
           -N|--notest)    RC_FILE="$HOME"/.config/awesome/rc.lua
                           ;;
-          -C|--config)    shift; RC_FILE="$1"
+          -B|--binary)    shift; AWESOME="$1"
                           ;;
-          -A|--awmbin)    shift; AWESOME="$1"
+          -C|--config)    shift; RC_FILE="$1"
                           ;;
           -D|--display)   shift; D="$1"
                           [[ ! "$D" =~ ^[0-9] ]] && errorout "$D is not a valid display number"
