@@ -47,3 +47,7 @@ Examples:
   awmtt start -D 3 -C /etc/xdg/awesome/rc.lua -S 1280x800
   awmtt theme set zenburn
 ```
+
+### Xephyr Usage
+Have a look at http://awesome.naquadah.org/wiki/Using_Xephyr and its documentation to learn more about how to use it. 
+For instance, you can press `Control-Mod3-Shift` to have Xephyr grab focus while inside the window so that you can't accidentally leave it. To let go, press `Control-(Right-)Shift`.  
