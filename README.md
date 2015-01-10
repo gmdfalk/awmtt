@@ -5,8 +5,9 @@ It requires Xephyr, an Xorg-Application which can spawn a nested instance of xor
 ### Installation
 ArchLinux users can find awmtt in the [AUR](https://aur.archlinux.org/packages/awmtt/).
 
-Example manual installation:
+Example Debian/Ubuntu manual installation:
 ``` bash
+sudo apt-get install xserver-xephyr
 sudo wget -O /usr/bin/awmtt https://raw.githubusercontent.com/mikar/awmtt/master/awmtt.sh
 sudo chmod a+x /usr/bin/awmtt
 ```
@@ -41,8 +42,8 @@ Options:
   -o|--options <opt>  Pass options to awesome binary (e.g. --no-argb or --check)
   -h|--help           Show this help text
   
-examples:
-awmtt start (uses defaults: -D 1 -C $HOME/.config/awesome/rc.lua.test -S 1024x640)
-awmtt start -D 3 -C /etc/xdg/awesome/rc.lua -S 1280x800
-awmtt theme set zenburn
+Examples:
+  awmtt start (uses defaults: -D 1 -C $HOME/.config/awesome/rc.lua.test -S 1024x640)
+  awmtt start -D 3 -C /etc/xdg/awesome/rc.lua -S 1280x800
+  awmtt theme set zenburn
 ```
