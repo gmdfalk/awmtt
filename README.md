@@ -18,14 +18,17 @@ Here's an example of what it looks like:
 
 ### Usage
 ```
-awmtt (start | stop [all] | restart) [-B <path>] [-C <path>] [-D <int>] [-S <size>] [-e <cmd>] [-o <opt>]
-awmtt theme (get | set <theme> | list | random)
+awmtt start [-B <path>] [-C <path>] [-D <int>] [-S <size>] [-a <opt>]... [-x <opts>]
+awmtt (stop [all] | restart)
+awmtt run [-D <int>] <command>
+awmtt theme (get | set <theme> | list | random) [-N]
 
 Arguments:
   start           Spawn nested Awesome via Xephyr
   stop            Stops the last Xephyr process
     all           Stop all instances of Xephyr 
   restart         Restart all instances of Xephyr
+  run <cmd>       Run a command inside a Xephyr instance (specify which one with -D)
   theme           Some basic theming control via:
     get           Get current theme name
     set <theme>   Set theme to <theme>
@@ -36,16 +39,17 @@ Options:
   -B|--binary <path>  Specify path to awesome binary (for testing custom awesome builds)
   -C|--config <path>  Specify configuration file
   -D|--display <int>  Specify the display to use (e.g. 1)
-  -S|--size <size>    Specify the window size
   -N|--notest         Don't use a testfile but your actual rc.lua (i.e. $HOME/.config/awesome/rc.lua)
-  -e|--execute <cmd>  Execute command in nested Awesome
-  -o|--options <opt>  Pass options to awesome binary (e.g. --no-argb or --check)
-  -h|--help           Show this help text
+                      This happens by default if there is no rc.lua.test file.
+  -S|--size <size>    Specify the window size
+  -a|--aopt <opt>     Pass option to awesome binary (e.g. --no-argb or --check). Can be repeated.
+  -x|--xopts <opts>   Pass options to xephyr binary (e.g. -retro or -keybd). Needs to be last.
+  -h|--help           Show this help text and exit
   
 Examples:
-  awmtt start (uses defaults: -D 1 -C $HOME/.config/awesome/rc.lua.test -S 1024x640)
-  awmtt start -D 3 -C /etc/xdg/awesome/rc.lua -S 1280x800
-  awmtt theme set zenburn
+  awmtt start (uses defaults: -C $HOME/.config/awesome/rc.lua.test -D 1 -S 1024x640)
+  awmtt start -C /etc/xdg/awesome/rc.lua -D 3 -S 1280x800
+  awmtt theme set zenburn -N
 ```
 
 ### Xephyr Usage
