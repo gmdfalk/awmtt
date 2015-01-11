@@ -224,7 +224,6 @@ parse_options() {
         esac
         shift
     done
-    echo $XEPHYR_OPTIONS
 }
 #}}}
 #}}}
