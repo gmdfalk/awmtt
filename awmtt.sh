@@ -30,7 +30,7 @@ Options:
                       This happens by default if there is no rc.lua.test file.
   -S|--size <size>    Specify the window size
   -a|--aopt <opt>     Pass option to awesome binary (e.g. --no-argb or --check). Can be repeated.
-  -x|--xopts <opts>   Pass options to xephyr binary (e.g. -retro or -keybd). Needs to be last.
+  -x|--xopts <opts>   Pass options to xephyr binary (e.g. -keybd ephyr,,,xkblayout=de). Needs to be last.
   -h|--help           Show this help text and exit
   
 Examples:
@@ -50,9 +50,9 @@ errorout() { echo "error: $*" >&2; exit 1; }
 #}}}
 
 #{{{ Executable check
-BINARY=$(which awesome)
+AWESOME=$(which awesome)
 XEPHYR=$(which Xephyr)
-[[ -x "$BINARY" ]] || errorout 'Please install Awesome first'
+[[ -x "$AWESOME" ]] || errorout 'Please install Awesome first'
 [[ -x "$XEPHYR" ]] || errorout 'Please install Xephyr first'
 #}}}
 
@@ -85,14 +85,10 @@ start() {
             break;
         fi;
     done
-
-    if [[ -z "$XEPHYR_OPTIONS" ]]; then
-        "$XEPHYR" -name xephyr_$D -ac -br -noreset -screen "$SIZE" :$D >/dev/null 2>&1 &
-    else
-        "$XEPHYR" -name xephyr_$D -ac -br -noreset -screen "$SIZE" "$XEPHYR_OPTIONS" :$D >/dev/null 2>&1 &
-    fi
+    
+    "$XEPHYR" :$D -name xephyr_$D -ac -br -noreset -screen "$SIZE" $XEPHYR_OPTIONS >/dev/null 2>&1 &
     sleep 1
-    DISPLAY=:$D.0 "$BINARY" -c "$RC_FILE" "$AWESOME_OPTIONS" &
+    DISPLAY=:$D.0 "$AWESOME" -c "$RC_FILE" $AWESOME_OPTIONS &
     sleep 1
     
     # print some useful info
@@ -215,7 +211,7 @@ parse_options() {
             restart)        input=restart;;
             run)            input=run;;
             theme)          input=theme;;
-            -B|--binary)    shift; BINARY="$1";;
+            -B|--binary)    shift; AWESOME="$1";;
             -C|--config)    shift; RC_FILE="$1";;
             -D|--display)   shift; D="$1"
                             [[ ! "$D" =~ ^[0-9] ]] && errorout "$D is not a valid display number";;
@@ -224,10 +220,11 @@ parse_options() {
             -a|--aopt)      shift; AWESOME_OPTIONS+="$1";;
             -x|--xopts)     shift; XEPHYR_OPTIONS="$@";;
             -h|--help)      usage;;
-            *)              args+=( "$1" );;
+            *)              args+=("$1");;
         esac
         shift
     done
+    echo $XEPHYR_OPTIONS
 }
 #}}}
 #}}}
