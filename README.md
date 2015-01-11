@@ -43,15 +43,15 @@ Options:
                       This happens by default if there is no rc.lua.test file.
   -S|--size <size>    Specify the window size
   -a|--aopt <opt>     Pass option to awesome binary (e.g. --no-argb or --check). Can be repeated.
-  -x|--xopts <opts>   Pass options to xephyr binary (e.g. -retro or -keybd). Needs to be last.
+  -x|--xopts <opts>   Pass options to xephyr binary (e.g. -keybd ephyr,,,xkblayout=de). Needs to be last.
   -h|--help           Show this help text and exit
   
 Examples:
   awmtt start (uses defaults: -C $HOME/.config/awesome/rc.lua.test -D 1 -S 1024x640)
-  awmtt start -C /etc/xdg/awesome/rc.lua -D 3 -S 1280x800
+  awmtt start -C /etc/xdg/awesome/rc.lua -D 3 -S 1280x800 -x -keybd ephyr,,,xkbmodel=pc105,xkblayout=de,xkbrules=evdev,xkboption=grp:alts_toogle
   awmtt theme set zenburn -N
 ```
 
-### Xephyr Usage
+### Xephyr
 Have a look at http://awesome.naquadah.org/wiki/Using_Xephyr and its documentation to learn more about how to use it. 
 For instance, you can press `Control-Mod3-Shift` to have Xephyr grab focus while inside the window so that you can't accidentally leave it. To let go, press `Control-(Right-)Shift`.  
