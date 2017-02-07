@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # awmtt: awesomewm testing tool
 # https://github.com/mikar/awmtt
 
