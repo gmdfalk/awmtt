@@ -72,7 +72,7 @@ fi
 #}}}
 
 #{{{ Hostname Check - this is probably only useful for me. I have the same rc.lua running on two different machines
-HOSTNAME=$(cat /proc/sys/kernel/hostname)
+HOSTNAME=$(uname -n)
 #}}}
         
 #{{{ Functions
