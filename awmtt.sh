@@ -217,7 +217,7 @@ parse_options() {
                             [[ ! "$D" =~ ^[0-9] ]] && errorout "$D is not a valid display number";;
             -N|--notest)    RC_FILE="$HOME"/.config/awesome/rc.lua;;
             -S|--size)      shift; SIZE="$1";;
-            -a|--aopt)      shift; AWESOME_OPTIONS+="$1";;
+            -a|--aopt)      shift; AWESOME_OPTIONS+="$1 ";;
             -x|--xopts)     shift; XEPHYR_OPTIONS="$@";;
             -h|--help)      usage;;
             *)              args+=("$1");;
