@@ -80,7 +80,7 @@ HOSTNAME=$(uname -n)
 start() {
     # check for free $DISPLAYs
     for ((i=0;;i++)); do
-        if [[ ! -f "/tmp/.X${i}-lock" ]]; then
+        if [[ ! -f "/tmp/.X11-unix/X${i}" ]]; then
             D=$i;
             break;
         fi;
